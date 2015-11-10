@@ -51,91 +51,88 @@ class PROCDN_Settings {
      * @return  void
      */
     public static function settings_page() {
-        echo '<div class="wrap">';
-        echo '<h2>' . _e("ProCDN Settings", "cdn") . '</h2>';
-        echo '<img src="http://procdn.net/static/images/logo/procdn-logo-64.png" alt="ProCDN.net" border=0 />';
-        echo '<form method="post" action="options.php">';
-        echo settings_fields('procdn');
+?>
+<div class="wrap">
+    <h2><?php echo _e("ProCDN Settings", "cdn"); ?></h2>
+    <img src="http://procdn.net/static/images/logo/procdn-logo-64.png" alt="ProCDN.net" border=0 />
+    <form method="post" action="options.php">
+        <?php echo settings_fields('procdn'); ?>
+        <?php $options = PROCDN::get_options(); ?>
 
-        $options = PROCDN::get_options();
-
-        echo '<table class="form-table">';
-        echo '<tr valign="top">';
-        echo '<th scope="row">' . _e("CDN URL", "cdn") . '</th>';
-        echo '<td>';
-        echo '<fieldset>';
-        echo '<label for="procdn_url">';
-        echo '<input type="text" name="procdn[url]" id="procdn_url" value="'. $options['url'].'" size="64" class="regular-text code" />';
-        echo _e("", "cdn");
-        echo '</label>';
-
-        echo '<p class="description">';
-        echo _e("Enter the CDN URL without trailing", "cdn") . '<code>/</code>';
-        echo '</p>';
-        echo '</fieldset>';
-        echo '</td>';
-        echo '</tr>';
-
-        echo '<tr valign="top">';
-        echo '<th scope="row">';
-        echo _e("Included Directories", "cdn");
-        echo '</th>';
-        echo '<td>';
-        echo '<fieldset>';
-        
-        echo '<label for="procdn_dirs">
-        <input type="text" name="procdn[dirs]" id="procdn_dirs" value="'. $options['dirs'] . '" size="64" class="regular-text code" />
-        '. _e("Default: <code>wp-content,wp-includes</code>", "cdn").'</label>
-
-        <p class="description">'. _e("Assets in these directories will be pointed to the CDN URL. Enter the directories separated by", "cdn").' <code>,</code>
-        </p>
-        </fieldset>
-        </td>
-        </tr>
-        <tr valign="top">
-        <th scope="row">'. _e("Excluded Extensions", "cdn").'</th>
-        <td>
-        <fieldset>
-        <label for="procdn_excludes">
-        <input type="text" name="procdn[excludes]" id="procdn_excludes" value="'. $options['excludes'] .'" size="64" class="regular-text code" />
-        '. _e("Default: <code>.php</code>", "cdn") .'
-        </label>
-
-        <p class="description">'. _e("Enter the exclusions separated by", "cdn") .' <code>,</code>
-        </p>
-        </fieldset>
-        </td>
-        </tr>
-
-        <tr valign="top">
-        <th scope="row">'. _e("Relative Path", "cdn").'</th>
-        <td>
-        <fieldset>
-        <label for="procdn_relative">
-        <input type="checkbox" name="procdn[relative]" id="procdn_relative" value="1" '. checked(1, $options['relative']) .' />
-        '. _e("Enable CDN for relative paths (default: enabled).", "cdn") .'
-        </label>
-
-        <p class="description">'. _e("", "cdn") .'</p>
-        </fieldset>
-        </td>
-        </tr>';
-        echo '<tr valign="top">';
-        echo '<th scope="row">'._e("CDN HTTPS", "cdn").'</th>';
-        echo '<td>';
-        echo '<fieldset>';
-        echo '<label for="procdn_https">';
-        echo '<input type="checkbox" name="procdn[https]" id="procdn_https" value="1" '. checked(1, $options['https']) .' />';
-        echo _e("Enable CDN for HTTPS connections (default: disabled).", "cdn");
-        echo '</label>';
-        
-        echo '<p class="description">'._e("", "cdn").'</p>';
-        echo '</fieldset>';
-        echo '</td>';
-        echo '</tr>';
-        echo '</table>';
-        echo submit_button();
-        echo '</form>';
-        echo '</div>';
+        <table class="form-table" border=1>
+            <tr valign="top">
+                <th scope="row"><?php echo _e("CDN URL", "cdn"); ?></th>
+                <td>
+                    <fieldset>
+                        <label for="procdn_url">
+                            <?php echo _e("", "cdn"); ?>
+                            <input type="text" name="procdn[url]" id="procdn_url" value="<?php echo $options['url']; ?>" size="64" class="regular-text code" />
+                            <?php echo _e("", "cdn"); ?>
+                        </label>
+                        <p class="description">
+                            <?php echo _e("Enter the CDN URL without trailing", "cdn"); ?> <code>/</code>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><?php echo _e("Included Directories", "cdn"); ?></th>
+                <td>
+                    <fieldset>
+                        <label for="procdn_dirs">
+                            <input type="text" name="procdn[dirs]" id="procdn_dirs" value="<?php echo $options['dirs']; ?>" size="64" class="regular-text code" />
+                            <?php echo _e("Default: <code>wp-content,wp-includes</code>", "cdn"); ?>
+                        </label>
+                        <p class="description">
+                            <?php echo _e("Assets in these directories will be pointed to the CDN URL. Enter the directories separated by", "cdn"); ?> <code>,</code>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><?php echo _e("Excluded Extensions", "cdn"); ?></th>
+                <td>
+                    <fieldset>
+                        <label for="procdn_excludes">
+                            <input type="text" name="procdn[excludes]" id="procdn_excludes" value="<?php echo $options['excludes']; ?>" size="64" class="regular-text code" />
+                            <?php echo _e("Default: <code>.php</code>", "cdn"); ?>
+                        </label>
+                        <p class="description">
+                            <?php echo _e("Enter the exclusions separated by", "cdn"); ?> <code>,</code>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><?php echo _e("Relative Path", "cdn"); ?></th>
+                <td>
+                    <fieldset>
+                        <label for="procdn_relative">
+                            <input type="checkbox" name="procdn[relative]" id="procdn_relative" value="1" <?php echo checked(1, $options['relative']); ?> />
+                            <?php echo _e("Enable CDN for relative paths (default: enabled).", "cdn"); ?>
+                        </label>
+                        <p class="description">
+                            <?php echo _e("", "cdn"); ?>
+                        </p>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row"><?php echo _e("CDN HTTPS", "cdn"); ?></th>
+                <td>
+                    <fieldset>
+                        <label for="procdn_https">
+                            <input type="checkbox" name="procdn[https]" id="procdn_https" value="1" <?php echo checked(1, $options['https']); ?> />
+                            <?php echo _e("Enable CDN for HTTPS connections (default: disabled).", "cdn"); ?>
+                        </label>
+                        <p class="description"><?php echo _e("", "cdn"); ?></p>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+        <?php echo submit_button(); ?>
+    </form>
+</div>
+<?php
     }
 }
