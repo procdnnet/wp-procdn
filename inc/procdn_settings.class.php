@@ -59,7 +59,7 @@ class PROCDN_Settings {
         <?php echo settings_fields('procdn'); ?>
         <?php $options = PROCDN::get_options(); ?>
 
-        <table class="form-table" border=1>
+        <table class="form-table">
             <tr valign="top">
                 <th scope="row"><?php echo _e("CDN URL", "cdn"); ?></th>
                 <td>
