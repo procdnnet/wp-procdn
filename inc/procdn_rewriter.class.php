@@ -82,9 +82,7 @@ class PROCDN_Rewriter {
      */
     public function rewrite($html) {
         // check if HTTPS and use CDN over HTTPS enabled
-        if (!$this->https
-                && isset(filter_input(INPUT_SERVER, 'HTTPS'))
-                && filter_input(INPUT_SERVER, 'HTTPS') == 'on') {
+        if (!$this->https && filter_input(INPUT_SERVER, 'HTTPS') == 'on') {
             return $html;
         }
 
